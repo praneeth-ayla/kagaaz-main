@@ -22,6 +22,7 @@ model User {
   userDescription String?
   publicAcc   Boolean @default(true)
   posts       Posts[]  
+  chats       Chats[]
   }
 
 
@@ -29,12 +30,18 @@ model User {
 model Posts {
   id          String @id @default(uuid())
   title       String
-  description String
-  note        String?
-  elements    String?
-  publisehed  Boolean
+  description String?
+  tags        String?
+  url         String
   postedOn    DateTime  @default(now()) 
   authorId    String 
   author      User @relation(fields: [authorId], references: [id])
+  views       Int   @default(0)
 }
 
+model Chats {
+  id          String @id @default(uuid())
+  message     String
+  authorId    String
+  author      User  @relation(fields: [authorId], references: [id])
+}

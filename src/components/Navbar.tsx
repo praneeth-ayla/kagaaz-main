@@ -17,6 +17,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModeToggle } from "@/components/ui/toggle-mode";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePathname, useRouter } from "next/navigation";
+import UploadPost from "./UploadPost";
 
 interface UserDetails {
 	name?: string | null;
@@ -26,7 +27,6 @@ interface UserDetails {
 
 export default function Navbar() {
 	const [userDetails, setUserDetails] = useState<UserDetails>();
-	const [url, setUrl] = useState();
 
 	useEffect(() => {
 		const getDetails = async () => {
@@ -62,9 +62,9 @@ export default function Navbar() {
 								href="/"
 								className="flex items-center gap-2 text-lg font-semibold">
 								<span className="text-2xl font-extrabold">
-									TheTJ
+									Kaagaz
 								</span>
-								<span className="sr-only">TheTJ</span>
+								<span className="sr-only">Kaagaz</span>
 							</Link>
 							<Link
 								href="/"
@@ -97,9 +97,9 @@ export default function Navbar() {
 								href="/"
 								className="flex items-center gap-2 text-lg font-semibold md:text-base">
 								<span className="text-2xl font-extrabold">
-									TheTJ
+									Kaagaz
 								</span>
-								<span className="sr-only">TheTJ</span>
+								<span className="sr-only">Kaagaz</span>
 							</Link>
 						</div>
 						<Link
@@ -116,13 +116,14 @@ export default function Navbar() {
 							)}`}>
 							User
 						</Link>
-						<Link
+						<UploadPost></UploadPost>
+						{/* <Link
 							href="/post/create"
 							className={`transition-colors hover:text-foreground ${isActive(
 								"/post/create"
 							)}`}>
 							Add post
-						</Link>
+						</Link> */}
 					</nav>
 					<div className="ml-auto ">
 						<ModeToggle></ModeToggle>
