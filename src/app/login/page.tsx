@@ -12,11 +12,16 @@ import ToS from "@/components/ToS";
 import Pp from "@/components/Pp";
 import { getSession, signIn } from "next-auth/react";
 import { useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function DemoCreateAccount() {
+	const { toast } = useToast();
 	async function handleSignIn(type: string) {
 		const res = await signIn(type, { redirect: false });
 		if (res?.ok) {
+			toast({
+				title: "Login SuccessFull",
+			});
 			window.location.href = "/home";
 		} else {
 			window.location.href = "/";

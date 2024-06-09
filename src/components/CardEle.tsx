@@ -16,8 +16,10 @@ import TimeConverter from "../components/TimeConverter";
 import axios from "axios";
 import ShareBtn from "../components/ShareBtn";
 import { Share } from "lucide-react";
+import { useToast } from "./ui/use-toast";
 
 export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
+	const { toast } = useToast();
 	async function handleClick() {
 		axios.get("/api/post/?postId=" + cardDetails.id);
 		window.open(cardDetails.url);
@@ -76,6 +78,9 @@ export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
 							className="hover:cursor-pointer hover:scale-105"
 							onClick={() => {
 								navigator.clipboard.writeText(cardDetails.url);
+								toast({
+									title: "Copied to clipboard!",
+								});
 							}}></Share>
 						<Button
 							className=" rounded-lg my-3"

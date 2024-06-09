@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Send, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ChatBlock from "@/components/ChatBlock";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
 	const [posts, setPosts] = useState<UserPost[]>([]);
@@ -19,6 +20,7 @@ export default function Home() {
 	);
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
+	const { toast } = useToast();
 	async function fetchPosts() {
 		try {
 			const res = await axios.get("/api/post/get-all");
@@ -137,12 +139,13 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="col-span-2 flex flex-col mb-16 gap-10 p-10 overflow-auto no-scrollbar">
-					{filteredPosts.map((post) => (
-						<CardEle
-							key={post.id}
-							cardDetails={post}
-						/>
-					))}
+					{filteredPosts &&
+						filteredPosts.map((post) => (
+							<CardEle
+								key={post.id}
+								cardDetails={post}
+							/>
+						))}
 				</div>
 				<div className="col-span-1 border flex-col-reverse border-t-0 flex gap-2 mb-16 overflow-auto no-scrollbar">
 					<div className="flex gap-3 mt-4 mb-10 px-3">

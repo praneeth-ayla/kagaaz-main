@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "@/components/SessionWrapper";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system">
-					<SessionWrapper>{children}</SessionWrapper>
+					<SessionWrapper>
+						{children} <Toaster />
+					</SessionWrapper>
 				</ThemeProvider>
 			</body>
 		</html>
