@@ -63,7 +63,12 @@ export default function Home() {
 	return (
 		<div className="">
 			<div className="fixed grid grid-cols-4 h-screen">
-				<div className="col-span-1 border h-screen ">
+				<div className="col-span-1 text-center text-lg">Filter</div>
+				<div className="col-span-2 text-center text-lg">Posts</div>
+				<div className="col-span-1 text-center text-lg">
+					#General chat
+				</div>
+				<div className="col-span-1 border border-t-0 h-screen ">
 					<div className="flex gap-2 p-2">
 						<Input
 							placeholder="Search Notes"
@@ -94,15 +99,16 @@ export default function Home() {
 					<div>3</div>
 				</div>
 				<div className="col-span-2 flex flex-col mb-16 gap-10 p-10 overflow-auto no-scrollbar">
-					{filteredPosts.map((post) => (
-						<CardEle
-							key={post.id}
-							cardDetails={post}
-						/>
-					))}
+					{filteredPosts.length !== 0 &&
+						filteredPosts.map((post) => (
+							<CardEle
+								key={post.id}
+								cardDetails={post}
+							/>
+						))}
 				</div>
-				<div className="col-span-1 border flex-col-reverse flex gap-2 mb-16 overflow-auto no-scrollbar">
-					<div className="flex gap-3 mt-4 mb-3 px-3">
+				<div className="col-span-1 border flex-col-reverse border-t-0 flex gap-2 mb-16 overflow-auto no-scrollbar">
+					<div className="flex gap-3 mt-4 mb-10 px-3">
 						<Input
 							placeholder="Type your message"
 							onChange={(e) => {

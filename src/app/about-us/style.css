@@ -1,0 +1,93 @@
+body {
+	font-family: Arial, sans-serif;
+	/* background: url("contact.png") no-repeat center center fixed; */
+	background-size: cover;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+.overlay {
+	background: rgba(255, 255, 255, 0.9);
+	padding: 20px 0;
+	min-height: 100vh;
+}
+.max-w-screen-xl {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.py-20 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.px-8 {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.lg\:px-10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+h2 {
+	font-size: 2.5rem;
+	color: #2563eb;
+	text-align: center;
+	font-weight: bold;
+}
+hr {
+	margin: 0 auto;
+	width: 3rem;
+	height: 0.25rem;
+	background-color: #38a169;
+	border: none;
+	margin-top: 1rem;
+	margin-bottom: 1.5rem;
+}
+p {
+	text-align: center;
+	font-size: 1.25rem;
+	color: #4a5568;
+}
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+	margin-top: 4rem;
+}
+.card {
+	background-color: #fff;
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	width: 280px;
+}
+.card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card img {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+}
+.card-body {
+	padding: 1rem;
+	text-align: center;
+}
+.card-body h3 {
+	font-size: 1.25rem;
+	color: #2563eb;
+	margin-bottom: 0.5rem;
+}
+.card-body span {
+	display: block;
+	font-size: 1rem;
+	color: #2563eb;
+	margin-bottom: 0.5rem;
+}
+.card-body p {
+	font-size: 0.875rem;
+	color: #4a5568;
+	line-height: 1.5;
+}
