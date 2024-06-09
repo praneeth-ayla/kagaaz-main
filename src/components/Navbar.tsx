@@ -61,7 +61,7 @@ export default function Navbar() {
 							<Link
 								href="/"
 								className="flex items-center gap-2 text-lg font-semibold">
-								<span className="text-2xl font-extrabold">
+								<span className="text-2xl italic font-extrabold">
 									Kaagaz
 								</span>
 								<span className="sr-only">Kaagaz</span>
@@ -96,7 +96,11 @@ export default function Navbar() {
 							<Link
 								href="/"
 								className="flex items-center gap-2 text-lg font-semibold md:text-base">
-								<span className="text-2xl font-extrabold">
+								<span
+									className="text-2xl  text-primary  font-extrabold"
+									style={{
+										fontFamily: "",
+									}}>
 									Kaagaz
 								</span>
 								<span className="sr-only">Kaagaz</span>

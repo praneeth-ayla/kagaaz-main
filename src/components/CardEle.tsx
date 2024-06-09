@@ -14,6 +14,7 @@ import { UserPost } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import TimeConverter from "../components/TimeConverter";
 import axios from "axios";
+import ShareBtn from "../components/ShareBtn";
 
 export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
 	async function handleClick() {
@@ -69,13 +70,16 @@ export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
 				</CardDescription>
 				<div className="flex items-center justify-between">
 					<div>{cardDetails.views} views</div>
-					<Button
-						className="w-1/5 rounded-lg my-3"
-						onClick={() => {
-							handleClick();
-						}}>
-						Show
-					</Button>
+					<div className="flex gap-6 items-center justify-between">
+						<ShareBtn link={cardDetails.url}></ShareBtn>
+						<Button
+							className=" rounded-lg my-3"
+							onClick={() => {
+								handleClick();
+							}}>
+							Show
+						</Button>
+					</div>
 				</div>
 			</div>
 		</Card>
