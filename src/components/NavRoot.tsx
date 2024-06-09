@@ -73,13 +73,6 @@ export default function Navbar() {
 								)}`}>
 								Home
 							</Link>
-							<Link
-								href="/post/create"
-								className={`transition-colors hover:text-foreground ${isActive(
-									"/post/create"
-								)}`}>
-								Add post
-							</Link>{" "}
 						</nav>
 					</SheetContent>
 				</Sheet>
@@ -87,7 +80,7 @@ export default function Navbar() {
 					<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
 						<div className="pr-10">
 							<Link
-								href="/"
+								href="/home"
 								className="flex items-center gap-2 text-lg font-semibold md:text-base">
 								<span className="text-2xl  text-primary  font-extrabold">
 									Kaagaz
@@ -102,8 +95,6 @@ export default function Navbar() {
 							)}`}>
 							Home
 						</Link>
-
-						<UploadPost></UploadPost>
 					</nav>
 					<div className="ml-auto ">
 						<ModeToggle></ModeToggle>
@@ -162,13 +153,15 @@ export default function Navbar() {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end">
-								<DropdownMenuLabel
-									onClick={() => {
-										signIn();
-									}}
-									className="hover:bg-gray-100 hover:cursor-pointer">
-									Login
-								</DropdownMenuLabel>
+								<Link href={"/login"}>
+									<DropdownMenuLabel
+										onClick={() => {
+											// signIn();
+										}}
+										className="hover:bg-gray-100 hover:cursor-pointer">
+										Login
+									</DropdownMenuLabel>
+								</Link>
 							</DropdownMenuContent>
 						</DropdownMenu>
 					)}

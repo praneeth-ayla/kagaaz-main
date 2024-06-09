@@ -2,7 +2,7 @@
 
 export default function page() {
 	return (
-		<div className="overlay h-screen bg-blue-100">
+		<div className="overlay h-screen bg-blue-50">
 			<section className="max-w-screen-xl mx-auto py-10 px-8 lg:px-10">
 				<h2 className="text-4xl xl:text-5xl capitalize text-center text-indigo-900 font-bold">
 					Our Team

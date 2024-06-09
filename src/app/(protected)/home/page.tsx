@@ -14,6 +14,10 @@ export default function Home() {
 	const [chat, setChat] = useState("");
 	const [search, setSearch] = useState("");
 	const [filteredPosts, setFilteredPosts] = useState<UserPost[]>([]);
+	const [sortCriterion, setSortCriterion] = useState<"time" | "views">(
+		"time"
+	);
+	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
 	async function fetchPosts() {
 		try {
@@ -49,6 +53,21 @@ export default function Home() {
 		}
 	}, [search, posts]);
 
+	useEffect(() => {
+		const sortedPosts = [...filteredPosts].sort((a, b) => {
+			if (sortCriterion === "time") {
+				const dateA = new Date(a.postedOn).getTime();
+				const dateB = new Date(b.postedOn).getTime();
+				return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+			} else {
+				return sortOrder === "asc"
+					? a.views - b.views
+					: b.views - a.views;
+			}
+		});
+		setFilteredPosts(sortedPosts);
+	}, [sortCriterion, sortOrder, filteredPosts]);
+
 	async function handleChatSubmit() {
 		try {
 			const res = await axios.post("/api/chats", {
@@ -64,12 +83,16 @@ export default function Home() {
 		<div className="">
 			<div className="fixed grid grid-cols-4 h-screen">
 				<div className="col-span-1 text-center text-lg">Filter</div>
-				<div className="col-span-2 text-center text-lg">Posts</div>
+				<div className="col-span-2 text-center text-lg">
+					<div className="flex justify-between items-center">
+						<span>Posts</span>
+					</div>
+				</div>
 				<div className="col-span-1 text-center text-lg">
 					#General chat
 				</div>
-				<div className="col-span-1 border border-t-0 h-screen ">
-					<div className="flex gap-2 p-2">
+				<div className="col-span-1 border border-t-0 h-screen flex flex-col gap-20 ">
+					<div className="flex gap-2 p-2 ">
 						<Input
 							placeholder="Search Notes"
 							value={search}
@@ -95,17 +118,31 @@ export default function Home() {
 							<Search className="h-5 w-5" />
 						</Button>
 					</div>
-					<div>2</div>
-					<div>3</div>
+					<div className="flex flex-col w-3/4 ml-10 gap-2">
+						<Button onClick={() => setSortCriterion("time")}>
+							Sort by Time
+						</Button>
+						<Button onClick={() => setSortCriterion("views")}>
+							Sort by Views
+						</Button>
+						<Button
+							onClick={() =>
+								setSortOrder(
+									sortOrder === "asc" ? "desc" : "asc"
+								)
+							}>
+							Order:{" "}
+							{sortOrder === "asc" ? "Ascending" : "Descending"}
+						</Button>
+					</div>
 				</div>
 				<div className="col-span-2 flex flex-col mb-16 gap-10 p-10 overflow-auto no-scrollbar">
-					{filteredPosts.length !== 0 &&
-						filteredPosts.map((post) => (
-							<CardEle
-								key={post.id}
-								cardDetails={post}
-							/>
-						))}
+					{filteredPosts.map((post) => (
+						<CardEle
+							key={post.id}
+							cardDetails={post}
+						/>
+					))}
 				</div>
 				<div className="col-span-1 border flex-col-reverse border-t-0 flex gap-2 mb-16 overflow-auto no-scrollbar">
 					<div className="flex gap-3 mt-4 mb-10 px-3">

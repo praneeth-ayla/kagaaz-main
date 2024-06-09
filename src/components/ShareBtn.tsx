@@ -1,5 +1,4 @@
 import { CopyIcon } from "@radix-ui/react-icons";
-
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -15,8 +14,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function ShareBtn({ link }: { link: string }) {
-	console.log(link);
-	const newString = link;
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -38,13 +35,13 @@ export default function ShareBtn({ link }: { link: string }) {
 						</Label>
 						<Input
 							id="link"
-							value={newString}
+							value={link}
 							readOnly
 						/>
 					</div>
 
 					<Button
-						type="submit"
+						type="button"
 						size="sm"
 						className="px-3"
 						onClick={() => {

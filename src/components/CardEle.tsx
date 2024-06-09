@@ -15,6 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import TimeConverter from "../components/TimeConverter";
 import axios from "axios";
 import ShareBtn from "../components/ShareBtn";
+import { Share } from "lucide-react";
 
 export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
 	async function handleClick() {
@@ -71,7 +72,11 @@ export default function CardEle({ cardDetails }: { cardDetails: UserPost }) {
 				<div className="flex items-center justify-between">
 					<div>{cardDetails.views} views</div>
 					<div className="flex gap-6 items-center justify-between">
-						<ShareBtn link={cardDetails.url}></ShareBtn>
+						<Share
+							className="hover:cursor-pointer hover:scale-105"
+							onClick={() => {
+								navigator.clipboard.writeText(cardDetails.url);
+							}}></Share>
 						<Button
 							className=" rounded-lg my-3"
 							onClick={() => {
