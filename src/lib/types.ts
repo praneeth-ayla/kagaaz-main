@@ -14,3 +14,14 @@ export interface UserPost {
 		image: string;
 	};
 }
+
+export interface Message {
+	id: string;
+	message: string;
+	postedOn: string;
+	authorId: string;
+	author: {
+		name: string;
+		image: string;
+	};
+}

@@ -42,6 +42,7 @@ model Posts {
 model Chats {
   id          String @id @default(uuid())
   message     String
+  postedOn    DateTime   @default(now())
   authorId    String
   author      User  @relation(fields: [authorId], references: [id])
 }
