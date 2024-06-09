@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/card";
 import ToS from "@/components/ToS";
 import Pp from "@/components/Pp";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function DemoCreateAccount() {
 	async function handleSignIn(type: string) {
@@ -22,6 +23,18 @@ export default function DemoCreateAccount() {
 		}
 	}
 
+	useEffect(() => {
+		const getDetails = async () => {
+			const session = await getSession();
+			if (session?.user) {
+				window.location.href = "/home";
+			} else {
+				window.location.href = "";
+			}
+		};
+		getDetails();
+	}, []);
+
 	return (
 		<div className="flex items-center justify-center h-screen">
 			<Card>
@@ -29,13 +42,13 @@ export default function DemoCreateAccount() {
 					<CardTitle className="text-2xl">
 						Welcome to Kaagaz
 					</CardTitle>
-					<CardDescription>"Your Academic Ally"</CardDescription>
+					<CardDescription>Your Academic Ally</CardDescription>
 				</CardHeader>
 				<CardContent className="grid gap-4 ">
 					<div className=" gap-6 flex flex-col  ">
 						<CardDescription>
-							"Unlock handwritten notes and collaborative learning
-							for academic excellence."
+							Unlock handwritten notes and collaborative learning
+							for academic excellence.
 						</CardDescription>
 						<Button
 							variant="outline"
